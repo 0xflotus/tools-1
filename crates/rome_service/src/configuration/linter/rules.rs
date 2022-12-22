@@ -773,6 +773,8 @@ struct NurserySchema {
     no_redundant_use_strict: Option<RuleConfiguration>,
     #[doc = "This rule allows you to specify global variable names that you don’t want to use in your application."]
     no_restricted_globals: Option<RuleConfiguration>,
+    #[doc = "Put your description here"]
+    no_self_assignment: Option<RuleConfiguration>,
     #[doc = "Disallow comparisons where both sides are exactly the same."]
     no_self_compare: Option<RuleConfiguration>,
     #[doc = "Disallow returning a value from a setter"]
@@ -826,7 +828,7 @@ struct NurserySchema {
 }
 impl Nursery {
     const CATEGORY_NAME: &'static str = "nursery";
-    pub(crate) const CATEGORY_RULES: [&'static str; 46] = [
+    pub(crate) const CATEGORY_RULES: [&'static str; 47] = [
         "noAccessKey",
         "noAssignInExpressions",
         "noBannedTypes",
@@ -848,6 +850,7 @@ impl Nursery {
         "noRedundantAlt",
         "noRedundantUseStrict",
         "noRestrictedGlobals",
+        "noSelfAssignment",
         "noSelfCompare",
         "noSetterReturn",
         "noStringCaseMismatch",
@@ -930,7 +933,6 @@ impl Nursery {
         RuleFilter::Rule("nursery", Self::CATEGORY_RULES[14]),
         RuleFilter::Rule("nursery", Self::CATEGORY_RULES[16]),
         RuleFilter::Rule("nursery", Self::CATEGORY_RULES[18]),
-        RuleFilter::Rule("nursery", Self::CATEGORY_RULES[21]),
         RuleFilter::Rule("nursery", Self::CATEGORY_RULES[22]),
         RuleFilter::Rule("nursery", Self::CATEGORY_RULES[23]),
         RuleFilter::Rule("nursery", Self::CATEGORY_RULES[24]),
@@ -939,18 +941,19 @@ impl Nursery {
         RuleFilter::Rule("nursery", Self::CATEGORY_RULES[27]),
         RuleFilter::Rule("nursery", Self::CATEGORY_RULES[28]),
         RuleFilter::Rule("nursery", Self::CATEGORY_RULES[29]),
-        RuleFilter::Rule("nursery", Self::CATEGORY_RULES[31]),
-        RuleFilter::Rule("nursery", Self::CATEGORY_RULES[33]),
+        RuleFilter::Rule("nursery", Self::CATEGORY_RULES[30]),
+        RuleFilter::Rule("nursery", Self::CATEGORY_RULES[32]),
         RuleFilter::Rule("nursery", Self::CATEGORY_RULES[34]),
         RuleFilter::Rule("nursery", Self::CATEGORY_RULES[35]),
         RuleFilter::Rule("nursery", Self::CATEGORY_RULES[36]),
         RuleFilter::Rule("nursery", Self::CATEGORY_RULES[37]),
-        RuleFilter::Rule("nursery", Self::CATEGORY_RULES[40]),
+        RuleFilter::Rule("nursery", Self::CATEGORY_RULES[38]),
         RuleFilter::Rule("nursery", Self::CATEGORY_RULES[41]),
         RuleFilter::Rule("nursery", Self::CATEGORY_RULES[42]),
         RuleFilter::Rule("nursery", Self::CATEGORY_RULES[43]),
         RuleFilter::Rule("nursery", Self::CATEGORY_RULES[44]),
         RuleFilter::Rule("nursery", Self::CATEGORY_RULES[45]),
+        RuleFilter::Rule("nursery", Self::CATEGORY_RULES[46]),
     ];
     pub(crate) fn is_recommended(&self) -> bool { !matches!(self.recommended, Some(false)) }
     pub(crate) fn get_enabled_rules(&self) -> IndexSet<RuleFilter> {

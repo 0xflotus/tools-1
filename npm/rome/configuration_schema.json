@@ -819,6 +819,17 @@
             }
           ]
         },
+        "noSelfAssignment": {
+          "description": "Put your description here",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/RuleConfiguration"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "noSelfCompare": {
           "description": "Disallow comparisons where both sides are exactly the same.",
           "anyOf": [
